@@ -11,19 +11,21 @@ Ter a variavel Lang devidamente configurada ex:
     esport LANG=pt_BR
 """
 
-__version__ = "0.0.1"
+__version__ = "0.1.2"
 __author__ = "Marcelo de Moura"
+
 import os
 
-current_language = os.getenv("LANG")
+current_language = os.getenv("LANG","en_US")
 
 #current_language = "it_IT"
 
-msg = "Hello word!"
+msg = {
+    "en_US": "Hello word!",
+    "pt_BR": "Ola Mundo",
+    "it_IT": "Ciao Mondo",
+    "es_ES": "Hola Mundo",
+    "fr_FR": "Bonjour, Monde",
+}
 
-if  current_language == "pt_BR":
-    msg = "Ola, mundo!"
-elif current_language == "it_IT":
-    msg = "Ciao, Mondo!"
-
-print(msg)
+print(msg[current_language])
