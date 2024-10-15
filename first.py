@@ -37,16 +37,16 @@ for arg in sys.argv[1:]:
 #for arg in sys.argv[1:]:
 #    print(f"{sys.argv=}")
 
-#current_language = "it_IT"
-
-#current_language = current_language[:5]
-
 current_language = arguments["lang"]  
 if current_language is None:
-    current_language = os.getenv("LANG","en_US")
-    #TODO: repeticao
-    if current_language is None:
+    #TODO: repeticao 
+    if "LANG" in os.environ:
+         current_language = os.getenv("LANG")
+    else: 
         current_language = input("Qual linguagem utilizada:")
+  
+        #current_language = "it_IT"
+current_language = current_language[:5]
 
 msg = {
     "en_US": "Hello word!",
@@ -56,5 +56,5 @@ msg = {
     "fr_FR": "Bonjour, Monde",
 }
 
-#print(msg[current_language] * arguments ["count"])
+#print(msg[current_language] * int(arguments ["count"]))
 print(msg[current_language])
