@@ -4,6 +4,12 @@ import sys
 
 #EAFP - easy to ask Foring than permission
 #Exemplos
+
+#try:
+#    raise RuntimeError("ocorreu um erro")
+#except Exception as e:
+#   print(str(e))
+
 try:
     names = open("names.txt").readlines()
 except FileNotFoundError as e:
