@@ -32,20 +32,13 @@ import os
 import sys
 from datetime import datetime
 arguments = sys.argv[1:]
-
-if not arguments:
-    operation = input("operação:")
-    n1 = input("n1:")
-    n2 = input("n2:")
-    arguments = [operation, n1, n2]
-    print(operation)
-elif len(arguments) != 3:
+try:
+    operations, *nuns = arguments
+except Exception as e:
+    print(str(e))
     print("Numeros invalidos")
     print("ex: 'sum 5 5'")
     sys.exit(1)
-
-operations, *nuns = arguments
-
 valid_operations = ("sum", "sub", "mul", "div")
 if operations not in valid_operations:
     print("Operação invalida")
