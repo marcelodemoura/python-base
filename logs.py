@@ -1,21 +1,31 @@
 #!/usr/bin/env pytho3
-
+import os
 import logging
-
-log = logging.Logger("logs", logging.DEBUG)
+from logging import handlers
 
 #TODO transformar em função(loguru)
+log_level = os.getenv("LOG_LEVEL", "WARNING").upper()
+log = logging.Logger("logs", logging.DEBUG)
+#ch = logging.StreamHandler() # envia para console/terminal/stender
+#ch.setLevel(logging.DEBUG)
+fh = handlers.RotatingFileHandler(
+    "mlog.log",
+    maxBytes=100, #o mais comum e usar 10**6
+    backupCount=10,
+    )
 
-#level
-ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)
-#format o que o log mostrara
+
+
+fh.setLevel(log_level)
 fmt = logging.Formatter(
     '%(asctime)s %(name)s %(levelname)s'
     'l:%(lineno)d f:%(filename)s: %(message)s')
+#ch.setFormatter(fmt)
+#log.addHandler(ch)
+fh.setFormatter(fmt)
+log.addHandler(fh)
 
-ch.setFormatter(fmt)
-log.addHandler(ch)
+
 
 """
 log.debug("msg dev")
