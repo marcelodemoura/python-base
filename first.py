@@ -16,6 +16,17 @@ __author__ = "Marcelo de Moura"
 
 import os
 import sys
+import logging
+
+
+log = logging.Logger("logs", logging.DEBUG)
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+fmt = logging.Formatter(
+    '%(asctime)s %(name)s %(levelname)s'
+    'l:%(lineno)d f:%(filename)s: %(message)s')
+ch.setFormatter(fmt)
+log.addHandler(ch)
 
 arguments = {
     "lang":None,
@@ -23,13 +34,21 @@ arguments = {
 }
 
 for arg in sys.argv[1:]:
-   #TODO:Tratar ValueError
     try:
         key, value = arg.split("=")
     except ValueError as e:
-        print("you need to use '='")
-        print(f"[ERROR] {str(e)}")
+        log.error(
+            "you need to use '=', voce tem que passar %s, try --key=value: %s",
+            arg, str(e)
+        )
         sys.exit(1)
+#for arg in sys.argv[1:]:
+#    try:
+#        key, value = arg.split("=")
+#    except ValueError as e:
+#        print("you need to use '='")
+#        print(f"[ERROR] {str(e)}")
+#        sys.exit(1)
 
 
     key = key.lstrip("-").strip()
@@ -39,14 +58,8 @@ for arg in sys.argv[1:]:
        sys.exit()
     arguments[key] = value
 
-#current_language = os.getenv("LANG","en_US")
-#argsuments = {}
-#for arg in sys.argv[1:]:
-#    print(f"{sys.argv=}")
-
 current_language = arguments["lang"]  
 if current_language is None:
-    #TODO: repeticao 
     if "LANG" in os.environ:
          current_language = os.getenv("LANG")
     else: 
@@ -71,5 +84,3 @@ except KeyError as e:
     sys.exit(1)
 
 print(message * int(arguments["count"]))
-#print(msg[current_language] * int(arguments ["count"]))
-#print(msg[current_language])
