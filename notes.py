@@ -31,10 +31,14 @@ if arguments[0] not in cmds:
     print(f"Invalid command {arguments[0]}")
 
 if arguments == "read":
+    try:
+        arg_tag = arguments[1].lower()
+    except IndexError:
+        arg_tag = input("Qual a tag?").strip().lower()
     #leitura de notas
     for line in open(filepath):
         titulo, tag, text = line.split("\t")
-        if tag.lower() == arguments[1].lower():
+        if tag.lower() == arg_tag:
             print(f"titulo: {titulo}")
             print(f"text: {text}")
             print("-" * 30)
@@ -42,7 +46,10 @@ if arguments == "read":
 
 
 if arguments[0] == "new":
-    titulo = arguments[1]#TODO Tratar exception
+    try:
+        titulo = arguments[1]#TODO Tratar exception
+    except IndexError:
+        titulo = input("Qual o titulo").strip().title()
     text = [
         f"{titulo}",
         input("tag:").strip(),

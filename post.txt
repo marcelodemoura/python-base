@@ -1,0 +1,8 @@
+title:Meu post
+tags:tech, geral
+date:2022-02-10
+públished:1
+---
+aqui post 
+aqui texto
+etc.etc.etc.

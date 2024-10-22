@@ -29,8 +29,20 @@ Os resultados salvos em ´infixcalc.log´
 """
 __version__ = "0.1.0"
 import os
+import logging
 import sys
 from datetime import datetime
+
+
+log = logging.Logger("logs", logging.DEBUG)
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+fmt = logging.Formatter(
+    '%(asctime)s %(name)s %(levelname)s'
+    'l:%(lineno)d f:%(filename)s: %(message)s')
+ch.setFormatter(fmt)
+log.addHandler(ch)
+
 arguments = sys.argv[1:]
 try:
     operations, *nuns = arguments
@@ -42,7 +54,6 @@ except Exception as e:
 valid_operations = ("sum", "sub", "mul", "div")
 if operations not in valid_operations:
     print("Operação invalida")
-#    print(valid_operations)
     sys.exit(1)
 
 validated_nums = []

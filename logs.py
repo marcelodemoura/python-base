@@ -10,7 +10,7 @@ log = logging.Logger("logs", logging.DEBUG)
 #ch.setLevel(logging.DEBUG)
 fh = handlers.RotatingFileHandler(
     "mlog.log",
-    maxBytes=100, #o mais comum e usar 10**6
+    maxBytes=800, #o mais comum e usar 10**6
     backupCount=10,
     )
 
