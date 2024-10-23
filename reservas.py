@@ -96,3 +96,7 @@ print(
 if input("Confirma? (digite y)").strip().lower() in ("y", "yes", "sim", "s"):
     with open(RESERVA_FILE, "a") as reserva_file:
         reserva_file.write(f"{nome_cliente},{num_quarto},{dias}\n")
+
+
+    #aula 30 voltar pra verificar o Preco que está dando erro
+    
