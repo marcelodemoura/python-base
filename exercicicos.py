@@ -51,9 +51,8 @@ elif temp < 0 :
     print("ALERTA frio extremo")
 
 
-
+#3 - Repete vogal
 """
-#Repete vogal
 words = [] 
 while True:
     word = input("Digite uma palavra ou (enter para sair):").strip()
