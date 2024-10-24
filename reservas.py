@@ -86,6 +86,8 @@ except ValueError:
 
 nome_quarto = quartos[num_quarto]["nome_quarto"]
 preco_diaria = quartos[num_quarto]["preco"]
+
+    #TODO aula 31 voltar pra verificar o Preco que está dando erro
 total = dias * preco_diaria
 
 print(
@@ -98,5 +100,4 @@ if input("Confirma? (digite y)").strip().lower() in ("y", "yes", "sim", "s"):
         reserva_file.write(f"{nome_cliente},{num_quarto},{dias}\n")
 
 
-    #aula 30 voltar pra verificar o Preco que está dando erro
     

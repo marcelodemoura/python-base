@@ -1,5 +1,7 @@
 import os
 import sys 
+import smtplib
+from email.mime.text import MIMEText 
 
 arguments =sys.argv[1:]
 if not arguments:
@@ -13,11 +15,11 @@ path = os.curdir
 filepath = os.path.join(path, filename)
 templatepath = os.path.join(path, templatename)
 
-for line in open(filepath):
-    name, email = line.split(",")
-    print(f"Enviando email para: {email}")
-    print()
-    print (open(templatepath).read()
+with smtplib.SMTP(host = SERVER) as server:
+    for line in open(filepath):
+          name, email = line.split(",")
+    text = (
+        open(templatepath).read()
             % {
                 "nome": name,
                 "produto": "caneta",
@@ -26,6 +28,17 @@ for line in open(filepath):
                 "quantidade": 1,
                 "preco": 50.5,
                 
-    }
-)
-print("-" * 50)
+        }
+    )
+
+    from_ = "marcelo.cavalcanti@mv.com.br"
+    to_ =  ", ".join([email])
+    
+    message = MIMEText(text)
+    message["Subject"] = "Compre mais"
+    message["From"] = from_
+    message["To"] = to_
+
+    server.sendmail(from_, to_, message.as_string())
+  
+
