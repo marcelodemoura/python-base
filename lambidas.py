@@ -28,6 +28,6 @@ operacoes = {
     "mul": lambda a, b: a * b,
     "div": lambda a, b: a / b,
 }
- 
+
 resultado = operacoes[operacao](int(n1), int(n2))
 print(f"O resultado é {resultado}")
